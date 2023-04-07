@@ -10,23 +10,38 @@ output:
     toc_float: yes
     fig_caption: yes
     keep_md: yes
-    
 ---
 
+```{=html}
+<style>
+.bold-hr {
+    border: none;
+    border-top: 3px solid black;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}
+.normal-hr {
+    border: none;
+    border-top: 1px solid black;
+    color: black;
+    text-align: center;
+}
+</style>
+```
+<!-- <hr class="bold-hr"> -->
+
+<!-- <hr class="normal-hr"> -->
 
 
-## Background
 
-This is a mini report on my thesis work on Spatiotemporal Assessment of Risk and Risk Changes for Rainfed Agriculture in Ethiopia. This is mainly for informative and showcasing the application of R and and it's GIS packages. 
+## 1.0 Background and Abstracts
 
-The outline will include:
-- An abstract
-- The Methodology
-- Results and script that generated the visuals
+This is a mini report on my thesis work on Spatiotemporal Assessment of Risk and Risk Changes for Rainfed Agriculture in Ethiopia. This is mainly for informative and showcasing the application of R and and it's GIS packages.
 
-### An abstract
+The outline will include: - An abstract - The Methodology - Results and script that generated the visuals
 
-Drought in Ethiopia impacts agriculture severely. Previous drought assessments neglected the temporal dimension, hindering proper monitoring. A new assessment used composite indicators to analyze drought risk between 2000 and 2019, finding that the first half of the last two decades had more risk due to severe droughts and highly exposed croplands. The years 2000, 2002, and 2008 experienced major droughts. The study calls for a more dynamic drought risk management system in Ethiopia and global drought risk assessment.
+Drought in Ethiopia impacts agriculture severely. Previous drought assessments neglected the temporal dimension, hindering proper monitoring. A new assessment used composite indicators to analyze drought risk between 2000 and 2019, finding that the first half of the last two decades had more risk due to severe droughts and highly exposed croplands. The years 2000, 2002, and 2008 experienced major droughts. The study calls for a more dynamic drought risk management system in Ethiopia and global drought risk assessment. This information will provide valuable insights into understanding the characteristics and impacts of drought in the study area. The methodology employed in this thesis will contribute to the existing body of knowledge on drought characterization and will serve as a foundation for further research in this field. The findings of this study will be useful for policymakers, resource managers, and other stakeholders in developing effective strategies for drought monitoring, mitigation, and adaptation in the future. Overall, the use of the DS parameter and the calculated drought hazard index will provide valuable information for understanding the spatiotemporal patterns and dynamics of drought, and ultimately contribute to improved drought management practices. The methodology used in this study has the potential to be applied to other regions to enhance our understanding of drought dynamics and impacts at different scales.
 
 
 ```r
@@ -43,14 +58,93 @@ summary(cars)
 ##  Max.   :25.0   Max.   :120.00
 ```
 
-
-
-
-
 ![](MSc_Report_files/figure-html/pressure-1.png)<!-- -->
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-## The Methodology
+## 2.0 Methodology and Workflow
 
-## Results and script that generated the vizuals
+<hr>
+
+The framework used in this assessment
+
+![list of vulnerability indicators](Assessment.jpg) Frame 1 = The Workflow, Frame 2 = The Methodology
+
+<hr>
+
+### Drought Hazard Assessment
+
+The primary variables used to characterize droughts was based on the concept of drought severity (DS), which is a crucial parameter for assessing the intensity and strength of drought in a given area (Zhang et al., 2015). DS is closely related to the water deficit and is calculated by summing or averaging the absolute differences between drought values and threshold values used for drought identification (Vogt & Naumann, 2018; Wang et al., 2018). The assessment of drought severity was conducted at multiple spatial scales, including pixel and zonallevels, over the period of 2000 to 2019.
+
+In this analysis, drought severity was defined as values less than or equal to -0.5, based on the work of Gustavo Naumann et al. (2019), and areas with wet conditions were excluded from the study's scope. The severity of drought was determined by the magnitude of negative values of Standardized Precipitation Evapotranspiration Index (SPEI), with more negative values indicating more severe drought conditions. Drought was identified when SPEI values dropped below -0.5, indicating a deficit in rainfall compared to atmospheric demand (Gebremeskel Haile et al., 2020).
+
+Once the drought threshold was established, regions experiencing extreme drought were used to calculate the drought hazard index. The first step involved calculating the yearly drought index at the pixel level, which was then aggregated to the zonal level for further analysis. This approach allowed for a comprehensive assessment of drought severity and hazard across different spatial scales and over an extended time period.
+
+### Exposure Assessemnt
+
+The dataset used for the assessment is the annual land cover (LC) maps by the European Space Agency Climate Change Initiative (ESA-CCI), which provides consistent 300m resolution LC maps on an annual basis from 1992 to 2019 (Version 2.0.7cds) and 2016 to 2019 (Version 2.1.1) (Bontemps et al., 2013; Liu et al., 2018).
+
+The rainfed cropland in Ethiopia is the specific element under consideration in this research, and the annual cropland areas were extracted from the global dataset using R software (R version 4.0.2). The areas of rainfed cropland were then calculated in relation to the drought coverage areas. The outcome was an annual Hazard/Exposure calculated on a regional basis for each of the regions, and the percentage area of exposed areas was calculated using ArcGIS 10.3.1. This allows for an assessment of the extent of exposure of rainfed cropland in Ethiopia to drought events. Overall, this methodology utilizes state-of-the-art remote sensing data and advanced statistical tools to assess the hazard and exposure of drought events on rainfed cropland in Ethiopia.
+
+### Vulnerability Assessesment
+
+In order to assess the vulnerability domain, A total of 100 papers were retrieved from the search, out of which 52 were selected for use in this research. In addition, non-systemic literature reviews were conducted through snowball sampling, resulting in the inclusion of 13 additional papers, making a total of 62 papers that were reviewed to identify indicators for drought vulnerability (refer to Annex Table 7 for the list of indicators). The selected papers were analyzed using MAXQDA (VERBI SOFTWARE 2020), and each indicator was identified using a code. The indicators were then grouped into categories such as social susceptibility, lack of coping capacity, environmental susceptibilities, lack of adaptive capacities, agriculture, economic, governance, health, land use, infrastructure, and social.
+
+Data availability for the period of 2000-2019 was checked for the identified indicators. The statistical datasets were retrieved from open sources such as grey literature, country databases, statistical reports, and scientific papers to ensure that the results can be validated and reproduced (Frischen et al., 2020; Naumann et al., 2014). This rigorous approach ensures that the research findings are based on reliable and verified data sources, enhancing the robustness of the study.
+
+The following checks were carried done on the dataset:
+
+-   Indicators and Data Cleaning
+-   Missing values detection
+-   Outliers Detection and Treatment
+-   Multicollinearity Analysis
+-   Data Normalization
+
+Here is was the final list of the **vulnerability indicator** considered and the missing values(%) ![list of vulnerability indicators](Picture3.png)
+
+## 3.0 Results and script that generated the vizuals
+
+<hr>
+
+### Drought Hazards
+
+![list of vulnerability indicators](Hazard.png)
+Scripts for this visuals here (Links)
+
+```
+The results show that the first decade of the analysis experienced more severe drought events than the last decade. The years 2000, 2002, 2008, and 2009 were the most drought-affected years, while 2007, 2011, 2012, 2016, and 2019 were the least affected years. The central and southern parts of Ethiopia were more affected by drought, while the northern part was less affected.
+
+The regions that were most affected by drought, in order of severity, were Dire Dawa, Harari, and SNNP, while Tigray, Afar, and Amhara were the least affected. The top five zones with the most severe drought events were Gedeo, Kembata Tibaro, Harari, Halaba, and Sidama, while Central Gondar, Southern Tigray, Wag Hamra, and Fanti were the least affected.
+
+It should be noted that the results are based on average normalized values, and therefore, careful interpretation is required. The findings are consistent with previous studies on drought in Ethiopia, which have highlighted severe drought events in the years 2004, 2005, 2008, 2010, and 2012. Additionally, the eastern part of Ethiopia received less rainfall compared to the western part.
+```
+
+### Exposed Croplands
+
+![Exposed Cropland](Cropland_exp.png)
+
+```
+The analysis shows that croplands were more exposed to drought severity in the first half of the decade than the second half, similar to the trend observed in drought severity. However, there were variations in the years of exposure. While 2008 experienced the most severe drought, the year 2000 had the highest exposure of cropland to drought. This was followed by 2008, 2009, and 2001. In the second half of the decade, years 2017 and 2018 experienced the most exposure.
+
+On average, the regions with the most exposed croplands were Dire Dawa (0.94), Harari (0.93), Addis Ababa (0.91), and SNNP (0.82). Tigray was the only region with no exposure of croplands to drought. When analyzing yearly exposure trends, SNNP had the highest exposure in 2000 and 2002, with about 99% of crops being exposed to severe drought.
+
+On the zonal level, more than three-quarters of the zones with croplands had an exposure index greater than 0.54. The most exposed zones on average were Baseko, Mao Komo, and Dire Dawa, with 99% of crop areas being exposed
+```
+
+### Vulnerability
+
+<img src="vulnerability1-1.png" width="100%" style="display: block; margin: auto auto auto 0;" />
+```
+The vulnerability of different regions can be measured by indicators such as their coping capacity and social susceptibility. Based on these indicators, some regions are more vulnerable than others. For example, the regions of Amhara, Oromia, SNNP, and Afar are the most socially susceptible, while Gambela, Harari, and Benishangul Gumz are the least susceptible. Similarly, regions like Gambela, Addis Ababa, and Dire Dawa are found to be more lacking in coping capacities compared to regions like Oromia, Amhara, and SNNP which are the least lacking. By examining these vulnerability indicators, we can understand the reasons behind why some regions are more vulnerable than others.
+
+Gambela, on average, is the most vulnerable region. However, its vulnerability is mainly driven by its lack of coping capacity, which scored the highest at 0.79 in the region. In contrast, its social susceptibility score is low at 0.30.
+```
+
+### Spatial and temporal risk
+
+![Spatial and Temporal Trend in Risk](Risk_result.png)
+```
+The risk of drought in the country has decreased over the time periods studied. The years 2000, 2002, and 2008 had the highest risk index values, while 2012, 2019, and 2016 had the lowest. This finding is consistent with the hazard analysis conducted on a yearly basis, which showed that hazard values were highest in 2000, 2002, and 2008.
+
+However, the drivers of risk varied over time. For instance, in 2008, the year with the highest drought risk, the main driver of risk was the exposed cropland. This was the highest ranking dimension of risk for all the time periods studied.
+```
